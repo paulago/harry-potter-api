@@ -1,5 +1,9 @@
 import "./footer.css";
 
 export function Footer() {
-  return <footer>© 2022 Paula</footer>;
+  return (
+    <footer>
+      <p>© 2022 Paula</p>
+    </footer>
+  );
 }

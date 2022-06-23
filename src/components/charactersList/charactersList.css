@@ -1,0 +1,19 @@
+.characters-list-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.characters-list-table {
+  border: 2px solid black;
+  width: 800px;
+  height: 200px;
+}
+
+th {
+  border-bottom: 1px solid black;
+}
+
+td {
+  text-align: center;
+}

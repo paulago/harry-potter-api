@@ -1,0 +1,8 @@
+footer {
+  background-color: black;
+}
+
+footer p {
+  color: white;
+  padding: 1rem;
+}
