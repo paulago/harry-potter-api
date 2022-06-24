@@ -8,16 +8,18 @@ export function HomePage() {
   const [filter, setFilter] = useState("");
 
   const urlAPI = "http://hp-api.herokuapp.com/api/characters";
-  /*   let current_page = 1;
-  let obj_per_page = 20; */
 
   useEffect(() => {
     fetch(urlAPI)
-      .then((response) => response.json())
+      .then((response) => {
+        if (response.ok) return response.json();
+        throw new Error("Something went wrong while requesting characters");
+      })
       .then((data) => {
         setCharacters(data);
         console.log(data);
-      });
+      })
+      .catch((error) => console.error(error.message));
   }, []);
 
   const handleFilter = useCallback((e) => {

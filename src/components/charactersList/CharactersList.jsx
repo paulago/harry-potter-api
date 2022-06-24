@@ -1,6 +1,37 @@
 import "./charactersList.css";
+import { useState } from "react";
 
 export function CharactersList({ characters }) {
+  const pageLimit = 5;
+  const charactersLimit = 20;
+
+  const [pages] = useState(Math.round(characters.length / charactersLimit));
+  const [currentPage, setCurrentPage] = useState(1);
+
+  function handlePrevPage() {
+    setCurrentPage((page) => page - 1);
+  }
+
+  function handleNextPage() {
+    setCurrentPage((page) => page + 1);
+  }
+
+  function changePage(event) {
+    const pageNumber = Number(event.target.textContent);
+    setCurrentPage(pageNumber);
+  }
+
+  const getPaginatedData = () => {
+    const startIndex = currentPage * charactersLimit - charactersLimit;
+    const endIndex = startIndex + charactersLimit;
+    return characters.slice(startIndex, endIndex);
+  };
+
+  const getPaginationGroup = () => {
+    let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
+    return new Array(pageLimit).fill().map((_, index) => start + index + 1);
+  };
+
   // map: loop through the json data.
   return (
     <>
@@ -13,9 +44,9 @@ export function CharactersList({ characters }) {
             </tr>
           </thead>
           <tbody>
-            {characters.map((character, key) => {
+            {getPaginatedData().map((character, index) => {
               return (
-                <tr key={key}>
+                <tr key={index}>
                   <td>{character.name}</td>
                   <td>
                     <button>Read more</button>
@@ -26,16 +57,41 @@ export function CharactersList({ characters }) {
           </tbody>
         </table>
       </div>
-      <nav>
+      <div>
         <ul className="pagination">
           <li>
-            <button id="previousButton">Previous</button>
+            <button
+              id="prevButton"
+              onClick={handlePrevPage}
+              className={`prev ${currentPage === 1 ? "disabled" : ""}`}
+            >
+              Previous
+            </button>
           </li>
           <li>
-            <button id="nextButton">Next</button>
+            {getPaginationGroup().map((item, index) => (
+              <button
+                key={index}
+                onClick={changePage}
+                className={`paginationItem ${
+                  currentPage === item ? "active" : null
+                }`}
+              >
+                <span>{item}</span>
+              </button>
+            ))}
+          </li>
+          <li>
+            <button
+              id="nextButton"
+              onClick={handleNextPage}
+              className={`next ${currentPage === pages ? "disabled" : ""}`}
+            >
+              Next
+            </button>
           </li>
         </ul>
-      </nav>
+      </div>
     </>
   );
 }
