@@ -1,12 +1,16 @@
 import "./charactersList.css";
 import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
-export function CharactersList({ characters }) {
+export function CharactersList({ characters, setCharacters }) {
   const pageLimit = 5;
   const charactersLimit = 20;
 
   const [pages] = useState(Math.round(characters.length / charactersLimit));
   const [currentPage, setCurrentPage] = useState(1);
+  const [order, setOrder] = useState("ASC");
+  const navigate = useNavigate();
+  const { name } = useParams();
 
   function handlePrevPage() {
     setCurrentPage((page) => page - 1);
@@ -32,6 +36,27 @@ export function CharactersList({ characters }) {
     return new Array(pageLimit).fill().map((_, index) => start + index + 1);
   };
 
+  const sorting = (col) => {
+    if (order === "ASC") {
+      const sorted = [...characters].sort((a, b) =>
+        a[col].toLowerCase() > b[col].toLowerCase() ? 1 : -1
+      );
+      setCharacters(sorted);
+      setOrder("DSC");
+    }
+    if (order === "DSC") {
+      const sorted = [...characters].sort((a, b) =>
+        a[col].toLowerCase() < b[col].toLowerCase() ? 1 : -1
+      );
+      setCharacters(sorted);
+      setOrder("ASC");
+    }
+  };
+
+  function handleClick() {
+    navigate(`/character/${name}`);
+  }
+
   // map: loop through the json data.
   return (
     <>
@@ -39,7 +64,7 @@ export function CharactersList({ characters }) {
         <table className="characters-list-table">
           <thead>
             <tr>
-              <th>NAME</th>
+              <th onClick={() => sorting("name")}>NAME</th>
               <th>DETAILS</th>
             </tr>
           </thead>
@@ -49,7 +74,7 @@ export function CharactersList({ characters }) {
                 <tr key={index}>
                   <td>{character.name}</td>
                   <td>
-                    <button>Read more</button>
+                    <button onClick={handleClick}>Read more</button>
                   </td>
                 </tr>
               );

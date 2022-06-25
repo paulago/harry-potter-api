@@ -13,7 +13,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/character/:id" element={<CharacterPage />} />
+        <Route path="/character/:name" element={<CharacterPage />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
       <Footer />

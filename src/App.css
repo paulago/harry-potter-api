@@ -1,5 +1,22 @@
+:root {
+  --grey: rgb(36, 36, 36);
+  --white: #ffffffff;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.App {
+  background: linear-gradient(
+    270deg,
+    rgba(106, 81, 129, 0.993) 0%,
+    rgb(38, 27, 50) 100%
+  );
 }

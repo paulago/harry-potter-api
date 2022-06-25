@@ -36,9 +36,12 @@ export function HomePage() {
 
   return (
     <div className="home-container">
-      <h2>List of Harry Potter characters</h2>
+      <h2>List of Harry Potter Characters</h2>
       <CharactersSearch handleFilter={handleFilter} />
-      <CharactersList characters={filteredCharacters} />
+      <CharactersList
+        characters={filteredCharacters}
+        setCharacters={setCharacters}
+      />
     </div>
   );
 }
