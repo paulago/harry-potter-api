@@ -1,0 +1,15 @@
+.notFound-container {
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--grey);
+  width: 25rem;
+  padding: 2rem;
+  margin: auto;
+  border-radius: 1rem;
+}
+
+.notFound-container h2 {
+  color: rgb(217, 120, 120);
+}

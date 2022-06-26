@@ -1,15 +1,15 @@
 import "./homePage.css";
 import { CharactersSearch } from "../../components/charactersSearch/CharactersSearch";
 import { CharactersList } from "../../components/charactersList/CharactersList";
-import { useEffect, useState, useCallback, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 
 export function HomePage() {
   const [characters, setCharacters] = useState([]);
   const [filter, setFilter] = useState("");
 
-  const urlAPI = "http://hp-api.herokuapp.com/api/characters";
-
   useEffect(() => {
+    const urlAPI = "http://hp-api.herokuapp.com/api/characters";
+
     fetch(urlAPI)
       .then((response) => {
         if (response.ok) return response.json();
@@ -22,9 +22,9 @@ export function HomePage() {
       .catch((error) => console.error(error.message));
   }, []);
 
-  const handleFilter = useCallback((e) => {
+  const handleFilter = (e) => {
     setFilter(e.target.value);
-  }, []);
+  };
 
   const filteredCharacters = useMemo(() => {
     if (!filter) return characters;

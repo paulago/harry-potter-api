@@ -40,10 +40,20 @@ td {
   cursor: pointer;
 }
 
-.pagination button:active {
-  background-color: rgb(116, 116, 116);
+.pagination button:hover {
+  background-color: rgb(170, 170, 170);
 }
 
-.pagination button:hover {
-  background-color: rgb(116, 116, 116);
+.paginationItem.active {
+  border: 1px solid var(--white);
+  color: var(--white);
+  pointer-events: none;
+  background-color: rgb(170, 170, 170);
+}
+
+.prev.disabled,
+.next.disabled {
+  pointer-events: none;
+  box-shadow: none;
+  color: rgb(170, 170, 170);
 }

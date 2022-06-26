@@ -1,6 +1,6 @@
 import "./charactersList.css";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export function CharactersList({ characters, setCharacters }) {
   const pageLimit = 5;
@@ -10,7 +10,6 @@ export function CharactersList({ characters, setCharacters }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState("ASC");
   const navigate = useNavigate();
-  const { name } = useParams();
 
   function handlePrevPage() {
     setCurrentPage((page) => page - 1);
@@ -53,11 +52,10 @@ export function CharactersList({ characters, setCharacters }) {
     }
   };
 
-  function handleClick() {
-    navigate(`/character/${name}`);
+  function handleClick(index) {
+    navigate("/character/" + index);
   }
 
-  // map: loop through the json data.
   return (
     <>
       <div className="characters-list-container">
@@ -74,7 +72,9 @@ export function CharactersList({ characters, setCharacters }) {
                 <tr key={index}>
                   <td>{character.name}</td>
                   <td>
-                    <button onClick={handleClick}>Read more</button>
+                    <button onClick={() => handleClick(index)}>
+                      Read more
+                    </button>
                   </td>
                 </tr>
               );
