@@ -33,6 +33,16 @@
   margin-bottom: 1rem;
 }
 
+span.no-student,
+span.no-staff {
+  color: red;
+}
+
+span.student,
+span.staff {
+  color: green;
+}
+
 @media screen and (max-width: 800px) {
   .character-container {
     width: 60%;

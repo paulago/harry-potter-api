@@ -50,6 +50,39 @@ export function CharacterPage({ characters }) {
               {character.wand.wood} and {character.wand.core}
             </p>
           )}
+
+          {character.patronus === "" ? (
+            ""
+          ) : (
+            <p>
+              <strong>Patronus: </strong>
+              {character.patronus}
+            </p>
+          )}
+
+          {character.hogwartsStudent === false ? (
+            <p>
+              <strong>Hogwarts Student: </strong>{" "}
+              <span className="no-student">✕</span>
+            </p>
+          ) : (
+            <p>
+              <strong>Hogwarts Student: </strong>
+              <span className="student">✓</span>
+            </p>
+          )}
+
+          {character.hogwartsStaff === false ? (
+            <p>
+              <strong>Hogwarts Staff: </strong>
+              <span className="no-staff">✕</span>
+            </p>
+          ) : (
+            <p>
+              <strong>Hogwarts Staff: </strong>
+              <span className="staff">✓</span>
+            </p>
+          )}
         </div>
       </div>
     </main>
