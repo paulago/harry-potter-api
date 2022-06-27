@@ -25,7 +25,7 @@ function App() {
   }, []);
 
   if (characters.length === 0) {
-    return <p>Loading</p>;
+    return <p>Loading...</p>;
   }
 
   return (

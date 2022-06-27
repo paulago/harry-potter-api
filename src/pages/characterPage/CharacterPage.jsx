@@ -1,5 +1,4 @@
 import "./characterPage.css";
-import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 export function CharacterPage({ characters }) {
@@ -10,11 +9,15 @@ export function CharacterPage({ characters }) {
 
   return (
     <main className="character-page">
-      <div key={key}>
+      <div className="character-container" key={key}>
+        <img src={character.image} alt="" />
         <h2>{character.name}</h2>
-
-        <p>{character.house}</p>
-        <p>{character.dateOfBirth}</p>
+        <p>House: {character.house}</p>
+        <p>Date of birth: {character.dateOfBirth}</p>
+        <p>Ancestry: {character.ancestry}</p>
+        <p>
+          Wand: {character.wand.wood} and {character.wand.core}
+        </p>
       </div>
     </main>
   );

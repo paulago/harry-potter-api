@@ -1,0 +1,26 @@
+.character-page {
+  color: var(--white);
+}
+
+.character-container {
+  background-color: var(--grey);
+  display: flex;
+  flex-direction: column;
+  width: 30rem;
+  align-items: center;
+  margin: auto;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.character-container img {
+  border: 1px solid white;
+  border-radius: 1rem;
+  padding: 5px;
+  max-width: 100%;
+  height: auto;
+}
+
+.character-container h2 {
+  margin-top: 1rem;
+}
