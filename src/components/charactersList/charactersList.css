@@ -12,19 +12,35 @@
   color: var(--white);
   border-radius: 1rem;
   padding: 1rem 0 1rem 0;
+  box-shadow: 5px 5px 15px black;
+}
+
+.characters-list-table th {
+  padding-bottom: 1rem;
 }
 
 td {
   text-align: center;
 }
 
-.characters-list-table button {
-  padding: 4px 8px;
-  margin: 0.5rem;
+a {
+  text-decoration: none;
+  color: var(--grey);
+}
+
+a:visited {
+  color: var(--grey);
+}
+
+.character-link {
+  display: block;
+  margin: 4px auto;
+  padding: 4px;
   border-radius: 1rem;
   background-color: white;
   border: 1px solid black;
   cursor: pointer;
+  width: 7rem;
 }
 
 .pagination {
@@ -38,6 +54,15 @@ td {
   background-color: white;
   border: 1px solid black;
   cursor: pointer;
+  font-family: "Lora", serif;
+}
+
+#prevButton {
+  border-radius: 1rem 0 0 1rem;
+}
+
+#nextButton {
+  border-radius: 0 1rem 1rem 0;
 }
 
 .pagination button:hover {

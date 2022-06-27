@@ -1,22 +1,25 @@
 import "./homePage.css";
 import { CharactersSearch } from "../../components/charactersSearch/CharactersSearch";
 import { CharactersList } from "../../components/charactersList/CharactersList";
-import { useState, useMemo } from "react";
+import { useState, useEffect } from "react";
 
-export function HomePage({ characters, setCharacters }) {
+export function HomePage({ characters }) {
   const [filter, setFilter] = useState("");
+  const [characterList, setCharacterList] = useState(characters);
 
   const handleFilter = (e) => {
     setFilter(e.target.value);
   };
 
-  const filteredCharacters = useMemo(() => {
-    if (!filter) return characters;
-
-    return characters.filter((character) =>
-      character.name.toLowerCase().includes(filter.toLowerCase())
+  useEffect(() => {
+    setCharacterList(
+      filter
+        ? characters.filter((character) =>
+            character.name.toLowerCase().includes(filter.toLowerCase())
+          )
+        : characters
     );
-  }, [characters, filter]);
+  }, [filter, characters]);
 
   return (
     <main className="home-page">
@@ -24,8 +27,8 @@ export function HomePage({ characters, setCharacters }) {
         <h2>List of Harry Potter Characters</h2>
         <CharactersSearch handleFilter={handleFilter} />
         <CharactersList
-          characters={filteredCharacters}
-          setCharacters={setCharacters}
+          characters={characterList}
+          setCharacters={setCharacterList}
         />
       </div>
     </main>

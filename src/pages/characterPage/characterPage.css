@@ -5,22 +5,30 @@
 .character-container {
   background-color: var(--grey);
   display: flex;
-  flex-direction: column;
-  width: 30rem;
-  align-items: center;
+  width: 32rem;
   margin: auto;
   border-radius: 1rem;
   padding: 1rem;
+  align-items: center;
+  box-shadow: 5px 5px 15px black;
 }
 
-.character-container img {
+.image-character {
   border: 1px solid white;
   border-radius: 1rem;
   padding: 5px;
-  max-width: 100%;
   height: auto;
+  display: block;
+  height: 280px;
+  width: 200px;
+  object-fit: cover;
 }
 
-.character-container h2 {
-  margin-top: 1rem;
+.character-info {
+  margin-left: 1rem;
+}
+
+.character-info h2,
+.character-info p {
+  margin-bottom: 1rem;
 }

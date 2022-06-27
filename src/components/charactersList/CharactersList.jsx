@@ -1,24 +1,24 @@
 import "./charactersList.css";
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useCallback } from "react";
+import { Link } from "react-router-dom";
 
 export function CharactersList({ characters, setCharacters }) {
   const pageLimit = 5;
   const charactersLimit = 20;
 
+  const getTotalPages = useCallback(() => {
+    return Math.ceil(characters.length / charactersLimit);
+  }, [characters]);
   // pages es el número total de páginas. Esto se calcula dividiendo la longitud del array de los personajes entre el límite de personajes que se mostrarán por página (20).
-  const [pages, setPages] = useState(
-    Math.ceil(characters.length / charactersLimit)
-  );
+  const [pages, setPages] = useState(getTotalPages());
   const [currentPage, setCurrentPage] = useState(1);
   const [order, setOrder] = useState("ASC");
-  const navigate = useNavigate();
 
   useEffect(() => {
-    setPages(Math.ceil(characters.length / charactersLimit));
+    setPages(getTotalPages());
     setCurrentPage(1);
-  }, [characters]);
-  console.log(pages);
+    // setOrder('ASC');
+  }, [characters, getTotalPages]);
 
   function handlePrevPage() {
     setCurrentPage((page) => page - 1);
@@ -51,7 +51,9 @@ export function CharactersList({ characters, setCharacters }) {
   // Y lo rellena con el método .fill(). Con .map() crea un nuevo array con los números de las páginas que se van a mostrar.
   const getPaginationGroup = () => {
     let start = Math.floor((currentPage - 1) / pageLimit) * pageLimit;
-    return new Array(pageLimit).fill().map((_, index) => start + index + 1);
+    return new Array(Math.min(pages - start, pageLimit))
+      .fill()
+      .map((_, index) => start + index + 1);
   };
 
   const sorting = (col) => {
@@ -71,17 +73,15 @@ export function CharactersList({ characters, setCharacters }) {
     }
   };
 
-  function handleClick(index) {
-    navigate("/character/" + index);
-  }
-
   return (
     <>
       <div className="characters-list-container">
         <table className="characters-list-table">
           <thead>
             <tr>
-              <th onClick={() => sorting("name")}>NAME</th>
+              <th onClick={() => sorting("name")}>
+                NAME {order === "ASC" ? "↑" : "↓"}
+              </th>
               <th>DETAILS</th>
             </tr>
           </thead>
@@ -90,10 +90,13 @@ export function CharactersList({ characters, setCharacters }) {
               return (
                 <tr key={index}>
                   <td>{character.name}</td>
-                  <td>
-                    <button onClick={() => handleClick(index)}>
+                  <td className="link-column">
+                    <Link
+                      className="character-link"
+                      to={`/character/${character.id}`}
+                    >
                       Read more
-                    </button>
+                    </Link>
                   </td>
                 </tr>
               );

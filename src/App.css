@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;700&display=swap");
+
 :root {
   --grey: rgb(36, 36, 36);
   --white: #ffffffff;
@@ -23,4 +25,5 @@ main {
     rgba(106, 81, 129, 0.993) 0%,
     rgb(38, 27, 50) 100%
   );
+  font-family: "Lora", serif;
 }

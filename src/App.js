@@ -6,23 +6,36 @@ import { HomePage } from "./pages/homePage/HomePage";
 import { CharacterPage } from "./pages/characterPage/CharacterPage";
 import { NotFoundPage } from "./pages/notFoundPage/NotFoundPage";
 import { Footer } from "./components/footer/Footer";
+import slugify from "slugify";
 
 function App() {
   const [characters, setCharacters] = useState([]);
+  const [error, setError] = useState("");
   useEffect(() => {
-    const urlAPI = "http://hp-api.herokuapp.com/api/characters";
+    const loadCharacters = async () => {
+      try {
+        const urlAPI = "http://hp-api.herokuapp.com/api/characters";
 
-    fetch(urlAPI)
-      .then((response) => {
-        if (response.ok) return response.json();
-        throw new Error("Something went wrong while requesting characters");
-      })
-      .then((data) => {
-        setCharacters(data);
-        console.log(data);
-      })
-      .catch((error) => console.error(error.message));
+        const response = await fetch(urlAPI);
+
+        if (!response.ok) {
+          setError("Error cargando personajes");
+        } else {
+          const data = await response.json();
+          setCharacters(
+            data.map((character) => {
+              return { ...character, id: slugify(character.name) };
+            })
+          );
+        }
+      } catch (error) {
+        setError("Error general");
+      }
+    };
+    loadCharacters();
   }, []);
+
+  if (error) return <p>{error}</p>;
 
   if (characters.length === 0) {
     return <p>Loading...</p>;
@@ -30,7 +43,6 @@ function App() {
 
   return (
     <div className="App">
-      {" "}
       <Header />
       <Routes>
         <Route
