@@ -82,3 +82,9 @@ a:visited {
   box-shadow: none;
   color: rgb(170, 170, 170);
 }
+
+@media screen and (max-width: 800px) {
+  .characters-list-table {
+    width: 70%;
+  }
+}

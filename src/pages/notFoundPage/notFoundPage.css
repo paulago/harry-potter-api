@@ -12,4 +12,12 @@
 
 .notFound-container h2 {
   color: rgb(217, 120, 120);
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  .notFound-container {
+    width: 60%;
+    text-align: center;
+  }
 }

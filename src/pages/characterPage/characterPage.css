@@ -13,7 +13,7 @@
   box-shadow: 5px 5px 15px black;
 }
 
-.image-character {
+.character-image {
   border: 1px solid white;
   border-radius: 1rem;
   padding: 5px;
@@ -31,4 +31,27 @@
 .character-info h2,
 .character-info p {
   margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 800px) {
+  .character-container {
+    width: 60%;
+  }
+  .character-image {
+    width: 40%;
+    height: 50%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .character-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .character-image {
+    width: 70%;
+    height: 80%;
+    margin-bottom: 1rem;
+  }
 }

@@ -2,18 +2,16 @@ import "./characterPage.css";
 import { useParams } from "react-router-dom";
 
 export function CharacterPage({ characters }) {
-  const { key } = useParams();
-  const character = characters.find((c) => c.id === key);
-  console.log(characters);
-  console.log(key);
+  const { name } = useParams();
+  const character = characters.find((c) => c.id === name);
 
   return (
     <main className="character-page">
-      <div className="character-container" key={key}>
+      <div className="character-container">
         {character.image === "" ? (
           ""
         ) : (
-          <img className="image-character" src={character.image} alt="" />
+          <img className="character-image" src={character.image} alt="" />
         )}
         <div className="character-info">
           <h2>{character.name}</h2>

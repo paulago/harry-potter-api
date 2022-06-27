@@ -11,6 +11,7 @@ import slugify from "slugify";
 function App() {
   const [characters, setCharacters] = useState([]);
   const [error, setError] = useState("");
+
   useEffect(() => {
     const loadCharacters = async () => {
       try {
@@ -19,7 +20,7 @@ function App() {
         const response = await fetch(urlAPI);
 
         if (!response.ok) {
-          setError("Error cargando personajes");
+          setError("Error loading characters");
         } else {
           const data = await response.json();
           setCharacters(
@@ -29,7 +30,7 @@ function App() {
           );
         }
       } catch (error) {
-        setError("Error general");
+        setError("Error");
       }
     };
     loadCharacters();
@@ -52,7 +53,7 @@ function App() {
           }
         />
         <Route
-          path="/character/:key"
+          path="/character/:name"
           element={<CharacterPage characters={characters} />}
         />
         <Route path="*" element={<NotFoundPage />} />

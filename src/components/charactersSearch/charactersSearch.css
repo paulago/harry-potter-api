@@ -9,3 +9,9 @@ input {
   outline: none;
   font-family: "Lora", serif;
 }
+
+@media screen and (max-width: 800px) {
+  input {
+    width: 70%;
+  }
+}

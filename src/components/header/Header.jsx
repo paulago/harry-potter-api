@@ -7,9 +7,9 @@ export function Header() {
       <h1>
         <Link to={"/"}>
           <img
-            className="logo-img"
+            className="hp-logo"
             src={process.env.PUBLIC_URL + "/logo-harry-potter.png"}
-            alt=""
+            alt="harry potter logo"
           />
         </Link>
       </h1>
