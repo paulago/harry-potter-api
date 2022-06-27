@@ -1,17 +1,21 @@
 import "./characterPage.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-export function CharacterPage() {
+export function CharacterPage({ characters }) {
   const { key } = useParams();
-  const [character, setCharacter] = useState({});
+  const character = characters[key];
+  console.log(characters);
+  console.log(key);
 
   return (
-    <div key={key}>
-      <h2>{character.name}</h2>
-      <img alt="">{character.image}</img>
-      <p>{character.house}</p>
-      <p>{character.dateOfBirth}</p>
-    </div>
+    <main className="character-page">
+      <div key={key}>
+        <h2>{character.name}</h2>
+
+        <p>{character.house}</p>
+        <p>{character.dateOfBirth}</p>
+      </div>
+    </main>
   );
 }

@@ -1,7 +1,6 @@
 import "./charactersSearch.css";
-import { memo } from "react";
 
-export const CharactersSearch = memo(({ handleFilter }) => {
+export const CharactersSearch = ({ handleFilter }) => {
   return (
     <input
       id="search"
@@ -10,4 +9,4 @@ export const CharactersSearch = memo(({ handleFilter }) => {
       onChange={handleFilter}
     ></input>
   );
-});
+};

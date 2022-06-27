@@ -1,7 +1,6 @@
 :root {
   --grey: rgb(36, 36, 36);
   --white: #ffffffff;
-  min-height: 100vh;
 }
 
 * {
@@ -12,6 +11,10 @@
 
 ul {
   list-style-type: none;
+}
+
+main {
+  min-height: 100vh;
 }
 
 .App {
