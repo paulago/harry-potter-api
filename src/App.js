@@ -15,7 +15,7 @@ function App() {
   useEffect(() => {
     const loadCharacters = async () => {
       try {
-        const urlAPI = "http://hp-api.herokuapp.com/api/characters";
+        const urlAPI = "https://hp-api.herokuapp.com/api/characters";
 
         const response = await fetch(urlAPI);
 
